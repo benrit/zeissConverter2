@@ -1,0 +1,1 @@
+del /Q C:\temp\results\*

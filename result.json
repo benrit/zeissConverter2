@@ -1,0 +1,36 @@
+{
+    "headerData":{
+        "date":"20190828", 
+        "time":"12:09:37",
+        "operator":"BenC",
+        "devicegroup":"Contura_G2",
+        "dmesn":"501717",
+        "dmeswi":"Calypso",
+        "dmeswv":"6.4.20",
+        "operation":"",
+        "cavNr":"",
+        "MSN":"168",
+        "comment":""
+    },
+    "resultData":[
+        {"idType":"group", "id":"M_9007342", "data":[
+            { "idType":"yValue" , "id":"Y-Value_CD_12" , "act":"0.0045186" , "nom":"0.0000000" , "utol":"0.0070000" , "ltol":"-0.0070000" , "f_id":"CD_12" , "group":"M_9007342"},
+            { "idType":"diameter" , "id":"Diameter_CD_12" , "act":"4.8641146" , "nom":"4.8872280" , "utol":"0.0100000" , "ltol":"-0.0100000" , "f_id":"CD_12" , "group":"M_9007342"},
+            { "idType":"xValue" , "id":"X-Value_Circle1" , "act":"-0.0049659" , "nom":"0.0005460" , "utol":"0.0070000" , "ltol":"-0.0070000" , "f_id":"Circle1" , "group":"M_9007342"},
+            { "idType":"yValue" , "id":"Y-Value_Circle1" , "act":"0.0023709" , "nom":"0.0000000" , "utol":"0.0070000" , "ltol":"-0.0070000" , "f_id":"Circle1" , "group":"M_9007342"}
+        ]},
+        { "idType":"xValue" , "id":"MP_AC_1" , "act":"-0.0058899" , "nom":"0.0005460" , "utol":"0.0070000" , "ltol":"-0.0070000" , "f_id":"CD_12" , "group":"M_9007342"},
+        { "idType":"diameter" , "id":"Diameter_Circle1" , "act":"4.6735449" , "nom":"4.6940928" , "utol":"0.0100000" , "ltol":"-0.0100000" , "f_id":"Circle1" , "group":"M_9007342"},
+        { "idType":"gdtSpacePoint" , "id":"MP_P1" , "act":"0.0090463" , "nom":"0.0000000" , "utol":"0.0150000" , "ltol":"-0.0150000" , "f_id":"P1" , "group":"M_9007342"},
+        { "idType":"gdtSpacePoint" , "id":"MP_P2" , "act":"0.0111617" , "nom":"0.0000000" , "utol":"0.0150000" , "ltol":"-0.0150000" , "f_id":"P2" , "group":"M_9007342"},
+        { "idType":"gdtSpacePoint" , "id":"MP_P3" , "act":"0.0188411" , "nom":"0.0000000" , "utol":"0.0150000" , "ltol":"-0.0150000" , "f_id":"P3" , "group":"M_9007342"},
+        { "idType":"gdtSpacePoint" , "id":"MP_P4" , "act":"0.0163073" , "nom":"0.0000000" , "utol":"0.0150000" , "ltol":"-0.0150000" , "f_id":"P4" , "group":"M_9007342"},
+        { "idType":"diameter" , "id":"Diameter1" , "act":"3.6069655" , "nom":"3.6000000" , "utol":"0.0080000" , "ltol":"0.0040000" , "group":"WEDM" , "f_id":"Circle2"},
+        { "idType":"xValue" , "id":"X-Value1" , "act":"-0.0133775" , "nom":"0.0000000" , "utol":"0.0150000" , "ltol":"-0.0150000" , "group":"WEDM" , "f_id":"Circle2"},
+        { "idType":"yValue" , "id":"Y-Value1" , "act":"-0.0133761" , "nom":"0.0000000" , "utol":"0.0150000" , "ltol":"-0.0150000" , "group":"WEDM" , "f_id":"Circle2"},
+        { "idType":"gdtRound" , "id":"Roundness_Circle2" , "act":"0.0031965" , "nom":"0.0000000" , "utol":"0.0030000" , "ltol":"0.0000000" , "group":"WEDM" , "f_id":"Circle2"}
+    ],
+    "scanData":[
+
+    ]
+}
