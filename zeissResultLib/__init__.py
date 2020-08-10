@@ -19,24 +19,7 @@ class CmmFileHandler:
         self.cmmResultFileFolder = cmmResultFileFolder
         self.zeissResultFileFolder = zeissResultFileFolder
         
-        zeissResultFiles = os.listdir(zeissResultFileFolder)
-        if len(zeissResultFiles) < 3:
-            
-            raise FileNotFoundError("zeiss table files not found")
-
-        for file in zeissResultFiles:
-            if "chr" in file:
-                print(f'[loading "{file}"] ', end="")
-                self.chrData = self.loadCHR("\\".join([zeissResultFileFolder, file]))
-                print("Done")
-            if "fet" in file:
-                print(f'[loading "{file}"] ', end="")
-                self.fetData = self.loadFET("\\".join([zeissResultFileFolder, file]))
-                print("Done")
-            if "hdr" in file:
-                print(f'[loading "{file}"] ', end="")
-                self.hdrData = self.loadHDR("\\".join([zeissResultFileFolder, file]))
-                print("Done")
+        self.loadZeissTableFiles()
         
         dialogPath = os.path.abspath("\\".join([self.cmmResultFileFolder, planid, "dialog.json"]))
         print(f'[loading "{dialogPath}"] ', end="")
@@ -98,6 +81,26 @@ class CmmFileHandler:
             return temp['Dialog']
         else:
             raise FileNotFoundError
+
+    def loadZeissTableFiles(self):
+        zeissResultFiles = os.listdir(self.zeissResultFileFolder)
+        if len(zeissResultFiles) < 3:
+            
+            raise FileNotFoundError("zeiss table files not found")
+
+        for file in zeissResultFiles:
+            if "chr" in file:
+                print(f'[loading "{file}"] ', end="")
+                self.chrData = self.loadCHR("\\".join([self.zeissResultFileFolder, file]))
+                print("Done")
+            if "fet" in file:
+                print(f'[loading "{file}"] ', end="")
+                self.fetData = self.loadFET("\\".join([self.zeissResultFileFolder, file]))
+                print("Done")
+            if "hdr" in file:
+                print(f'[loading "{file}"] ', end="")
+                self.hdrData = self.loadHDR("\\".join([self.zeissResultFileFolder, file]))
+                print("Done")
 
 
     def loadCHR(self, filename):
