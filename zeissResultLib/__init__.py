@@ -21,54 +21,8 @@ class CmmFileHandler:
         
         self.loadZeissTableFiles()
         self.loadDialog()
+        self.saveCMM()
 
-
-        fileIndex = self.headerData.get("fileIndex", "MSN")
-        print(f'[File Index is "{fileIndex}"]')
-        self.resultFile = "\\".join([self.cmmResultFileFolder, self.planid, self.planid + "_" + self.headerData.get(fileIndex) + ".cmm"])
-
-        now = dt.datetime.now()
-        if os.path.isfile(self.resultFile):
-            print(f'[loading "{self.resultFile}"] ', end="")
-            self.currentCmmFile = self.loadCMM(self.resultFile)
-            print("Done")
-            print(f'[writing "{self.resultFile}"] ', end="")
-            
-            self.currentCmmFile[0].update(self.headerData)
-            self.currentCmmFile[0]['chrData'] = self.updateEntry(self.currentCmmFile[0]['chrData'], self.chrData, "i_id")
-            self.currentCmmFile[0]['fetData'] = self.updateEntry(self.currentCmmFile[0]['fetData'], self.fetData, "id")
-
-            temp = {}
-            temp['resultID'] = len(self.currentCmmFile)
-            temp["date"] = now.strftime("%Y%m%d")
-            temp["time"] = now.strftime("%H:%M:%S")
-            temp.update(self.headerData)
-            temp['endRun'] = time.time()
-            temp['chrData'] = self.chrData
-            temp['fetData'] = self.fetData
-            self.currentCmmFile.append(temp)
-            with open(self.resultFile, 'w') as f:
-                json.dump(self.currentCmmFile, f, indent=2)
-            print("Done")
-        else:
-            print(f'[writing "{self.resultFile}"] ', end="")
-            temp = {'resultID': 0, "date": now.strftime("%Y%m%d"), "time": now.strftime("%H:%M:%S")}
-            temp.update(self.headerData)
-            temp['endRun'] = time.time()
-            temp['chrData'] = self.chrData
-            temp['fetData'] = self.fetData
-            self.currentCmmFile.append(temp)
-            
-            temp = {'resultID': 1, "date": now.strftime("%Y%m%d"), "time": now.strftime("%H:%M:%S")}
-            temp.update(self.headerData)
-            temp['endRun'] = time.time()
-            temp['chrData'] = self.chrData
-            temp['fetData'] = self.fetData
-            self.currentCmmFile.append(temp)
-            
-            with open(self.resultFile, 'w') as f:
-                json.dump(self.currentCmmFile, f, indent=2)
-            print("Done")
 
     def loadDialog(self):
         dialogPath = os.path.abspath("\\".join([self.cmmResultFileFolder, self.planid, "dialog.json"]))
@@ -157,14 +111,62 @@ class CmmFileHandler:
         else:
             return []
 
+
     def loadCMM(self, filename):
         if os.path.isfile(filename):
             with open(filename, 'r') as f:
                 temp = json.load(f)
             return temp
 
-    def saveCMM(self, filename):
-        pass
+
+    def saveCMM(self):
+        fileIndex = self.headerData.get("fileIndex", "MSN")
+        print(f'[File Index is "{fileIndex}"]')
+        self.resultFile = "\\".join([self.cmmResultFileFolder, self.planid, self.planid + "_" + self.headerData.get(fileIndex) + ".cmm"])
+
+        now = dt.datetime.now()
+        if os.path.isfile(self.resultFile):
+            print(f'[loading "{self.resultFile}"] ', end="")
+            self.currentCmmFile = self.loadCMM(self.resultFile)
+            print("Done")
+            print(f'[writing "{self.resultFile}"] ', end="")
+            
+            self.currentCmmFile[0].update(self.headerData)
+            self.currentCmmFile[0]['chrData'] = self.updateEntry(self.currentCmmFile[0]['chrData'], self.chrData, "i_id")
+            self.currentCmmFile[0]['fetData'] = self.updateEntry(self.currentCmmFile[0]['fetData'], self.fetData, "id")
+
+            temp = {}
+            temp['resultID'] = len(self.currentCmmFile)
+            temp["date"] = now.strftime("%Y%m%d")
+            temp["time"] = now.strftime("%H:%M:%S")
+            temp.update(self.headerData)
+            temp['endRun'] = time.time()
+            temp['chrData'] = self.chrData
+            temp['fetData'] = self.fetData
+            self.currentCmmFile.append(temp)
+            with open(self.resultFile, 'w') as f:
+                json.dump(self.currentCmmFile, f, indent=2)
+            print("Done")
+        else:
+            print(f'[writing "{self.resultFile}"] ', end="")
+            temp = {'resultID': 0, "date": now.strftime("%Y%m%d"), "time": now.strftime("%H:%M:%S")}
+            temp.update(self.headerData)
+            temp['endRun'] = time.time()
+            temp['chrData'] = self.chrData
+            temp['fetData'] = self.fetData
+            self.currentCmmFile.append(temp)
+            
+            temp = {'resultID': 1, "date": now.strftime("%Y%m%d"), "time": now.strftime("%H:%M:%S")}
+            temp.update(self.headerData)
+            temp['endRun'] = time.time()
+            temp['chrData'] = self.chrData
+            temp['fetData'] = self.fetData
+            self.currentCmmFile.append(temp)
+            
+            with open(self.resultFile, 'w') as f:
+                json.dump(self.currentCmmFile, f, indent=2)
+            print("Done")
+
 
     def writeLog(self, filepath):
         pass
@@ -181,16 +183,6 @@ class CmmFileHandler:
                 
         return entry
 
-
-def loadDialogJson(filename):
-    if os.path.isfile(filename) and "dialog" in filename:
-        with open(filename, 'r') as f:
-            temp = json.load(f)
-        return temp['Dialog']
-    else:
-        print("dialog file not found: " + filename)
-        input()
-        exit()
 
 
 def loadDialog(filename):
@@ -231,17 +223,6 @@ def loadFET(filename):
         return fetData
     else:
         return []
-
-
-def getGroupList(itemList):
-    if len(itemList) == 0:
-        return []
-    
-    temp = []
-    for item in itemList:
-        if (item.get('group') not in temp):
-            temp.append(item.get('group'))
-
 
 def loadCHR(filename):
     if os.path.isfile(filename) and "chr" in filename:
