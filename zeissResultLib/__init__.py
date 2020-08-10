@@ -20,12 +20,8 @@ class CmmFileHandler:
         self.zeissResultFileFolder = zeissResultFileFolder
         
         self.loadZeissTableFiles()
-        
-        dialogPath = os.path.abspath("\\".join([self.cmmResultFileFolder, planid, "dialog.json"]))
-        print(f'[loading "{dialogPath}"] ', end="")
-        self.headerData.update(self.loadDialog(dialogPath))
-        self.headerData.update(self.hdrData)
-        print("Done")
+        self.loadDialog()
+
 
         fileIndex = self.headerData.get("fileIndex", "MSN")
         print(f'[File Index is "{fileIndex}"]')
@@ -74,11 +70,15 @@ class CmmFileHandler:
                 json.dump(self.currentCmmFile, f, indent=2)
             print("Done")
 
-    def loadDialog(self, filename):
-        if os.path.isfile(filename):
-            with open(filename, 'r') as f:
+    def loadDialog(self):
+        dialogPath = os.path.abspath("\\".join([self.cmmResultFileFolder, self.planid, "dialog.json"]))
+        if os.path.isfile(dialogPath):
+            with open(dialogPath, 'r') as f:
+                print(f'[loading "{dialogPath}"] ', end="")
                 temp = json.load(f)
-            return temp['Dialog']
+                self.headerData.update(temp['Dialog'])
+                self.headerData.update(self.hdrData)
+                print("Done")
         else:
             raise FileNotFoundError
 
