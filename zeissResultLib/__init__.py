@@ -5,8 +5,9 @@ import datetime as dt
 from dateutil import tz
 from lxml import etree as ET
 from uuid import uuid1
+import TableFileLoader
 
-class CmmFileHandler:
+class CmmFileHandler(TableFileLoader):
     headerData = {}
     setupData = {}
     chrData = {}
