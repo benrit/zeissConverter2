@@ -72,7 +72,7 @@ if __name__ == "__main__":
         path = rd + planid
         if not os.path.exists(path):
             os.makedirs(path)
-        resultFile = os.path.abspath("\\".join([path, resultFile]))
+        resultFile = "\\".join([path, resultFile])
 
         if os.path.isfile(resultFile):
             temp=''

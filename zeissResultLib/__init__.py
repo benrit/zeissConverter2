@@ -2,10 +2,13 @@ import os
 import json
 import time
 import datetime as dt
+from dateutil import tz
 from lxml import etree as ET
+from uuid import uuid1
 
 class CmmFileHandler:
     headerData = {}
+    setupData = {}
     chrData = {}
     fetData = {}
     hdrData = {}
@@ -19,24 +22,27 @@ class CmmFileHandler:
         self.cmmResultFileFolder = cmmResultFileFolder
         self.zeissResultFileFolder = zeissResultFileFolder
         
-        self.loadZeissTableFiles()
         self.loadDialog()
-        self.saveCMM()
+        if self.headerData.get('operation') != "Setup":
+            self.loadZeissTableFiles()
+            self.saveCMM()
 
 
     def loadDialog(self):
-        dialogPath = os.path.abspath("\\".join([self.cmmResultFileFolder, self.planid, "dialog.json"]))
+        dialogPath = "\\".join([self.cmmResultFileFolder, self.planid, "dialog.json"])
         if os.path.isfile(dialogPath):
             with open(dialogPath, 'r') as f:
                 print(f'[loading "{dialogPath}"] ', end="")
                 temp = json.load(f)
                 self.headerData.update(temp['Dialog'])
-                self.headerData.update(self.hdrData)
+                self.setupData.update(temp['Setup'])
                 print("Done")
+
         else:
-            raise FileNotFoundError
+            raise FileNotFoundError(f'"{dialogPath}" not found')
 
     def loadZeissTableFiles(self):
+       
         zeissResultFiles = os.listdir(self.zeissResultFileFolder)
         if len(zeissResultFiles) < 3:
             
@@ -54,6 +60,7 @@ class CmmFileHandler:
             if "hdr" in file:
                 print(f'[loading "{file}"] ', end="")
                 self.hdrData = self.loadHDR("\\".join([self.zeissResultFileFolder, file]))
+                self.headerData.update(self.hdrData)
                 print("Done")
 
 
@@ -68,7 +75,8 @@ class CmmFileHandler:
 
             for x,items in enumerate(fileContent[1:-1]):
                 if len(items) > 1:
-                    temp.append(dict(seq=x, idType=items[4], i_id=items[2], act=items[5], nom=items[6], utol=items[7],ltol=items[8], f_id=items[12],group=items[23]))
+                    temp.append(dict(seq=x, idType=items[4], i_id=items[2], act=float(items[5]), nom=float(items[6]),
+                                     utol=float(items[7]), ltol=float(items[8]), f_id=items[12], group=items[23]))
             return temp
         else:
             return []
@@ -90,8 +98,8 @@ class CmmFileHandler:
                             nomi=items[39], nomj=items[40], nomk=items[41], act_diameter=items[14],
                             act_diameter2=items[15], act_a1=items[16], act_a2=items[17], act_angle=items[18], 
                             act_apexAngle=items[19], nom_diameter=items[42], nom_diameter2=items[43], 
-                            nom_a1=items[44], nom_a2=items[45], nom_angle=items[46], nom_apexAngle=items[47], alignment=items[34]
-                            )
+                            nom_a1=items[44], nom_a2=items[45], nom_angle=items[46], nom_apexAngle=items[47], alignment=items[34],
+                            ioSign=items[24])
                     )
             return fetData
         else:
@@ -120,10 +128,12 @@ class CmmFileHandler:
 
 
     def saveCMM(self):
-        fileIndex = self.headerData.get("fileIndex", "MSN")
+
+        fileIndex = self.setupData.get("fileIndex", "MSN")
         print(f'[File Index is "{fileIndex}"]')
         self.resultFile = "\\".join([self.cmmResultFileFolder, self.planid, self.planid + "_" + self.headerData.get(fileIndex) + ".cmm"])
-
+       
+		
         now = dt.datetime.now()
         if os.path.isfile(self.resultFile):
             print(f'[loading "{self.resultFile}"] ', end="")
@@ -146,7 +156,13 @@ class CmmFileHandler:
             self.currentCmmFile.append(temp)
             with open(self.resultFile, 'w') as f:
                 json.dump(self.currentCmmFile, f, indent=2)
+            
+            with open(self.cmmResultFileFolder+'\\export\\'+ str(uuid1()) + '.json', 'w') as f:
+                temp['runtime'] =  time.time() - self.headerData['startRun']
+                temp['datetime'] = dt.datetime.now().isoformat()
+                json.dump(temp, f)
             print("Done")
+
         else:
             print(f'[writing "{self.resultFile}"] ', end="")
             temp = {'resultID': 0, "date": now.strftime("%Y%m%d"), "time": now.strftime("%H:%M:%S")}
@@ -165,8 +181,12 @@ class CmmFileHandler:
             
             with open(self.resultFile, 'w') as f:
                 json.dump(self.currentCmmFile, f, indent=2)
+            
+            with open(self.cmmResultFileFolder+'\\export\\'+ str(uuid1()) + '.json', 'w') as f:
+                temp['runtime'] =  time.time() - self.headerData['startRun']
+                temp['datetime'] = dt.datetime.now().isoformat()
+                json.dump(temp, f)
             print("Done")
-
 
     def writeLog(self, filepath):
         pass

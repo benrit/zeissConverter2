@@ -18,6 +18,10 @@ if __name__ == "__main__":
             scanfiles = sys.argv[x+1]
     try:
         CmmFileHandler(zeissResultFileFolder=fd, cmmResultFileFolder=rd, planid=planid, xmlResultFileFolder=pd)
-    except ValueError:
-        print(ValueError)
-        input("error")
+    except FileNotFoundError as e:
+        print(e)
+        input("")
+    except:
+        print("")
+        print("Unexpected error:", sys.exc_info()[0])
+        input("")
