@@ -76,7 +76,9 @@ class CmmFileHandler:
             for x,items in enumerate(fileContent[1:-1]):
                 if len(items) > 1:
                     temp.append(dict(seq=x, idType=items[4], i_id=items[2], act=float(items[5]), nom=float(items[6]),
-                                     utol=float(items[7]), ltol=float(items[8]), f_id=items[12], group=items[23]))
+                                     utol=float(items[7]), ltol=float(items[8]), f_id=items[12], group=items[23],
+                                     groups=';'.join(items[36:]).strip()))
+
             return temp
         else:
             return []
