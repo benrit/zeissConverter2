@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="16056043-8418-4e50-9087-876977033a37" name="Default Changelist" comment="created TableFileLoader.py converting the current loader to a class inherented loader for more flexibility">
+      <change beforePath="$PROJECT_DIR$/ZeissConverter2.0.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZeissConverter2.0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zeissResultLib/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/zeissResultLib/__init__.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="1.1.0" />
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="master" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/ZeissConverter2.0.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="shakfvux" />
+  </component>
+  <component name="ProjectId" id="1si8SvIgqy0uZQLGoZQs69C3XUS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager">
+    <configuration name="ZeissConverter2.0" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="ZeissConverter" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Zeiss\zeiss\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ZeissConverter2.0.py" />
+      <option name="PARAMETERS" value="-fd  c:\\temp\\results\\ -rd C:\\temp\\_resultDatabase\\ -f  &quot;test&quot; -pd C:\\temp\\Results\\ -or 159" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="16056043-8418-4e50-9087-876977033a37" name="Default Changelist" comment="" />
+      <created>1621344052786</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1621344052786</updated>
+      <workItem from="1621344054032" duration="9310000" />
+      <workItem from="1621353733783" duration="1229000" />
+      <workItem from="1621356708966" duration="604000" />
+      <workItem from="1621357480625" duration="758000" />
+      <workItem from="1621365955807" duration="1665000" />
+      <workItem from="1621426184040" duration="25000" />
+      <workItem from="1623695088450" duration="1695000" />
+      <workItem from="1623754434134" duration="35000" />
+      <workItem from="1624882609984" duration="2459000" />
+      <workItem from="1625054841892" duration="144000" />
+      <workItem from="1628862629997" duration="1887000" />
+      <workItem from="1628878095241" duration="8000" />
+      <workItem from="1628879102875" duration="87000" />
+      <workItem from="1628954012216" duration="185000" />
+      <workItem from="1629123901919" duration="121000" />
+      <workItem from="1631804323934" duration="882000" />
+      <workItem from="1631816164956" duration="188000" />
+    </task>
+    <task id="LOCAL-00001" summary="added Circle info Inside or Outside circle">
+      <created>1621344509972</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1621344509972</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added group list for nested elements">
+      <created>1621346358676</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1621346358676</updated>
+    </task>
+    <task id="LOCAL-00003" summary="created TableFileLoader.py converting the current loader to a class inherented loader for more flexibility">
+      <created>1621354194303</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1621354194303</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added Circle info Inside or Outside circle" />
+    <MESSAGE value="added group list for nested elements" />
+    <MESSAGE value="created TableFileLoader.py converting the current loader to a class inherented loader for more flexibility" />
+    <option name="LAST_COMMIT_MESSAGE" value="created TableFileLoader.py converting the current loader to a class inherented loader for more flexibility" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ZeissConverter$TableFileLoader.coverage" NAME="TableFileLoader Coverage Results" MODIFIED="1623695420680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/zeissResultLib" />
+    <SUITE FILE_PATH="coverage/ZeissConverter$ZeissConverter2_0.coverage" NAME="ZeissConverter2.0 Coverage Results" MODIFIED="1631805083562" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
