@@ -1,0 +1,6 @@
+dmesn = getRecordHead("dmesn")
+planid = getRecordHead("planid")
+pd = getActualInspectionDir()
+
+
+systemCallWithWait("python.exe O:\Measurement\Scripts\ZeissStartGui\zeissStartGui.py" + " -pd " + chr(34) + pd + chr(34) + " -f " + chr(34) + planid + chr(34))

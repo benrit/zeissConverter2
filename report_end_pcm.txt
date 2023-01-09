@@ -1,0 +1,57 @@
+planid = getRecordHead("planid")
+dmesn = getRecordHead("dmesn")
+rd = "o:\\Measurement\\Results\\"
+pd = "o:\\Measurement\\Program\\"
+fd = "c:\\temp\\results\\"
+inspdir = getActualInspectionDir()
+
+if (useConverter)
+
+if (fileExists(inspdir + "\\inspection_start_pcm.txt")) 
+
+    if (autorun == 0) 
+        systemCallWithWait("O:\\Measurement\\Scripts\\zeiss\\python.exe o:\\Measurement\\Scripts\\ZeissConverter\\ZeissConverter2.0.py" + " -f " + chr(34) + planid + chr(34))
+        
+        systemCallWithWait("C:\\ZEISS\\cmmApp\\zeissConverter.exe" + " -rd " + rd + " -pd " + pd + " -f " + chr(34) + planid + chr(34) + " -fd " + fd)
+    endif
+
+    if (autorun == 1) 
+        order = getRecordHead("order")
+        params = " -fd " + fd
+        params = params +  " -f " + chr(34) + planid + chr(34)
+        params = params +  " -or " + order
+        systemCallWithWait("O:\\Measurement\\Scripts\\zeiss\\python.exe o:\\Measurement\\Scripts\\ZeissConverter\\ZeissConverter2.0.py" + params)
+    endif
+
+    if (autorun == 2) 
+        order = getRecordHead("order")
+        params = " -fd " + fd
+        params = params +  " -f " + chr(34) + planid + chr(34)
+        params = params +  " -or " + order
+        systemCallWithWait("O:\\Measurement\\Scripts\\zeiss\\python.exe o:\\Measurement\\Scripts\\ZeissConverter\\ZeissConverter2.0.py" + params)
+    endif
+
+    if (autorun == 3) 
+        order = getRecordHead("partnbinc")
+        params = " -fd " + fd
+        params = params +  " -f " + chr(34) + planid + chr(34)
+        params = params +  " -or " + order
+        systemCallWithWait("O:\\Measurement\\Scripts\\zeiss\\python.exe o:\\Measurement\\Scripts\\ZeissConverter\\ZeissConverter2.0.py" + params)
+    endif
+
+    if (copyScanData == 1)
+       msnNum = getRecordHead("order")
+       sourceDir = inspdir + "\\temp\\geoactuals\\*"
+       targetDir = rd + planid + "\\" + msnNum + "\\"
+       systemCallWithWait("cmd /c mkdir " + targetDir)
+       systemCallWithWait("cmd /c copy " + sourceDir + " " + targetDir)
+    endif
+else
+        display("run Dialog box for startfile")
+endif
+
+
+systemCall("cmd.exe /c O:\\Measurement\\Scripts\\ZeissConverter\\deleteTemp.cmd")
+
+endif
+

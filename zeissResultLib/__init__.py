@@ -2,12 +2,13 @@ import os
 import json
 import time
 import datetime as dt
-from dateutil import tz
-from lxml import etree as ET
-from uuid import uuid1
-import TableFileLoader
+import re
 
-class CmmFileHandler(TableFileLoader):
+# from lxml import etree as ET
+from uuid import uuid1
+
+
+class CmmFileHandler:
     headerData = {}
     setupData = {}
     chrData = {}
@@ -18,7 +19,7 @@ class CmmFileHandler(TableFileLoader):
     cmmResultFileFolder = ""
     planid = ""
     
-    def __init__(self, zeissResultFileFolder, cmmResultFileFolder, planid, xmlResultFileFolder):
+    def __init__(self, zeissResultFileFolder, cmmResultFileFolder, planid):
         self.planid = planid
         self.cmmResultFileFolder = cmmResultFileFolder
         self.zeissResultFileFolder = zeissResultFileFolder
