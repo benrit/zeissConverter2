@@ -11,6 +11,15 @@
             "program": "${cwd}\\ZeissConverter2.0.py",
             "console": "integratedTerminal",
             "args": ["-f", "test test"]
+        },
+
+
+        {
+            "name": "Python remote debug",
+            "type": "python",
+            "request": "attach",
+            "connect": {"host": "127.0.0.1", "port": 5678},
+            
         }
     ]
 }

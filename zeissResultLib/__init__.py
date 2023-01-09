@@ -14,27 +14,61 @@ class CmmFileHandler:
     chrData = {}
     fetData = {}
     hdrData = {}
+    scanData = {}
     currentCmmFile = []
     zeissResultFileFolder = ""
     cmmResultFileFolder = ""
     planid = ""
-    
-    def __init__(self, zeissResultFileFolder, cmmResultFileFolder, planid):
+    inspectionDir = ""
+
+    def __init__(self, zeissResultFileFolder, cmmResultFileFolder, planid, inspDir):
         self.planid = planid
         self.cmmResultFileFolder = cmmResultFileFolder
         self.zeissResultFileFolder = zeissResultFileFolder
+        self.inspectionDir = inspDir
         
         self.loadDialog()
         if self.headerData.get('operation') != "Setup":
             self.loadZeissTableFiles()
+            self.loadScanData()
             self.saveCMM()
 
+    def readScanFile(self, filename):
+        if filename:
+            pos = []
+            vec = []
+            ra = []
+            with open(filename, 'r') as f:
+                for line in f.readlines():
+                    if line[0] == 'x':
+                        temp = line.split()
+                        pos.append({"x": float(temp[1]), "y": float(temp[2]), "z": float(temp[3])})
+                    if line[:5] == "kraft":
+                        temp = line.split()
+                        vec.append({"i": float(temp[1]), "j": float(temp[2]), "k": float(temp[3])})
+                    if line[:13] == "status/taster":
+                        temp = line.split()
+                        ra.append({"r": float(temp[2])})
+        return [{**p, **v, **r} for (p, v, r) in zip(pos, vec, ra)]
+
+
+    def loadScanData(self):
+
+        if self.setupData.get("importScan", False):
+            scanfileFolder = "\\".join([self.inspectionDir, "temp", "geoactuals"])
+            print(f'[loading ScanData "{scanfileFolder}"]')
+        
+            for file in os.scandir(scanfileFolder):
+                if file.is_file():
+                    print(file.name)
+                    self.scanData[file.name] = self.readScanFile(file)
+            print("done")
 
     def loadDialog(self):
         dialogPath = "\\".join([self.cmmResultFileFolder, self.planid, "dialog.json"])
         if os.path.isfile(dialogPath):
             with open(dialogPath, 'r') as f:
-                print(f'[loading "{dialogPath}"] ', end="")
+                print(f'[loading Dialog file "{dialogPath}"] ', end="")
                 temp = json.load(f)
                 self.headerData.update(temp['Dialog'])
                 self.setupData.update(temp['Setup'])
@@ -161,6 +195,8 @@ class CmmFileHandler:
             with open(self.resultFile, 'w') as f:
                 json.dump(self.currentCmmFile, f, indent=2)
             
+            temp['scanData'] = self.scanData
+
             with open(self.cmmResultFileFolder+'\\export\\'+ str(uuid1()) + '.json', 'w') as f:
                 temp['runtime'] =  time.time() - self.headerData['startRun']
                 temp['datetime'] = dt.datetime.now().isoformat()
@@ -185,7 +221,9 @@ class CmmFileHandler:
             
             with open(self.resultFile, 'w') as f:
                 json.dump(self.currentCmmFile, f, indent=2)
-            
+        
+            temp['scanData'] = self.scanData
+
             with open(self.cmmResultFileFolder+'\\export\\'+ str(uuid1()) + '.json', 'w') as f:
                 temp['runtime'] =  time.time() - self.headerData['startRun']
                 temp['datetime'] = dt.datetime.now().isoformat()
