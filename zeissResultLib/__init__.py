@@ -34,7 +34,7 @@ class CmmFileHandler:
             self.saveCMM()
 
     def readScanFile(self, filename):
-        if filename:
+        if os.path.isfile(filename):
             pos = []
             vec = []
             ra = []
