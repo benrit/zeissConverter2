@@ -53,7 +53,7 @@ class CmmFileHandler:
 
     def loadScanData(self):
 
-        if self.setupData.get("importScan", False):
+        if self.setupData.get("importScan", False) or self.headerData.get('operation') == "Incomming Measurement":
             scanfileFolder = "\\".join([self.inspectionDir, "temp", "geoactuals"])
             print(f'[loading ScanData "{scanfileFolder}"]')
         
@@ -238,7 +238,4 @@ class CmmFileHandler:
                 entry.append(new_item)
                 
         return entry
-
-
-
 
