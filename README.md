@@ -66,11 +66,32 @@ combining with the user supplied information
   "operation": "HSC",
   "tags": "",
   "status": "measured",
-  "counter": 12
+  "counter": 12,
   "chrData": [
-    {id: "Gate_16MM_1.Seal_1_X", idtype: "xValue", act: 0.001, nom: 0.000, utol: 0.005, ltol: -0.005},
-    {id: "Gate_16MM_1.Seal_1_Y", idtype: yxValue", act: 0.005, nom: 0.000, utol: 0.005, ltol: -0.005},
-    {id: "Gate_16MM_1.Seal_1_D", idtype: "diameter", act: 16.001, nom: 16.000, utol: 0.005, ltol: -0.005},
+    {
+      "id": "Gate_16MM_1.Seal_1_X",
+      "idtype": "xValue",
+      "act": 0.001,
+      "nom": 0,
+      "utol": 0.005,
+      "ltol": -0.005
+    },
+    {
+      "id": "Gate_16MM_1.Seal_1_Y",
+      "idtype": "yxValue",
+      "act": 0.005,
+      "nom": 0,
+      "utol": 0.005,
+      "ltol": -0.005
+    },
+    {
+      "id": "Gate_16MM_1.Seal_1_D",
+      "idtype": "diameter",
+      "act": 16.001,
+      "nom": 16,
+      "utol": 0.005,
+      "ltol": -0.005
+    }
   ]
 }
 ```
